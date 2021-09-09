@@ -212,7 +212,7 @@ private:
   bool split_long_option(const std::string& opt, std::string& o_name, std::string& o_argument){
     bool found_arg = false;
     
-    for(int i = 2; i < opt.size(); i++){  // ignore "--"
+    for(unsigned int i = 2; i < opt.size(); i++){  // ignore "--"
       // extract name
       if( ! found_arg){
         if(opt[i] == '='){
@@ -251,7 +251,7 @@ private:
 //------------------------------------------------------------------------------
 
   void parse_flag_list(const std::string& opt){
-    for(int i = 1; i < opt.size(); i++){
+    for(unsigned int i = 1; i < opt.size(); i++){
       // get id & store with empty arg list
       std::string opt_name(1, opt[i]);
       opt_id id = get_option_id( opt_name );
@@ -267,7 +267,7 @@ private:
     // '-oArgument'
     if(opt.size() > 2){
       std::string arg = "";
-      for(int i = 2; i < opt.size(); i++){
+      for(unsigned int i = 2; i < opt.size(); i++){
         arg += opt[i];
       }
       
@@ -284,7 +284,7 @@ private:
 //------------------------------------------------------------------------------
 
   opt_id get_option_id(const std::string& option_name){    
-    for(int i = 0; i < defined_options.size(); i++){
+    for(unsigned int i = 0; i < defined_options.size(); i++){
       if(defined_options[i].short_name == option_name)
         return i;
         
