@@ -125,7 +125,7 @@ private:
   
   std::vector<option> defined_options;
   std::vector<std::string> input;
-  opt_id program_id = std::numeric_limits<int>::max();  // non-option arguments are stored under this ID
+  opt_id program_id = std::numeric_limits<unsigned int>::max();  // non-option arguments are stored under this ID
   std::unordered_map< opt_id, std::vector<std::string> > options = { {program_id, {}} };
   std::string pgr_name = "";
   opt_id curr_option = program_id;  // if != program_id -> short option awaiting argument
@@ -193,7 +193,7 @@ private:
     bool has_arg = split_long_option(opt, option_name, option_argument);
     opt_id id = get_option_id(option_name);
     
-    if(id == std::numeric_limits<int>::max())
+    if(id == program_id)
       error("Found undefined option '" + option_name + "'.\n");
       
     if(defined_options[id].is_flag && has_arg)
